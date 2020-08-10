@@ -1,7 +1,7 @@
 'use strict';
 var form = document.getElementById('form');
 var table = document.getElementById('table');
-var clear = document.getElementById('clear')
+var clear = document.getElementById('clear');
 ToDo.all = [];
 if (!localStorage.getItem('todo')) {
     localStorage.setItem('todo', JSON.stringify([]));
@@ -9,7 +9,7 @@ if (!localStorage.getItem('todo')) {
     ToDo.all = JSON.parse(localStorage.getItem('todo'))
     generatTableBody();
 }
-
+// this is the constructor 
 function ToDo(task, date, urqency) {
     this.task = task;
     this.date = date;
@@ -17,6 +17,7 @@ function ToDo(task, date, urqency) {
     ToDo.all.push(this);
 }
 
+// this event to save the data to the localstorage
 
 form.addEventListener('submit', function () {
     event.preventDefault();
@@ -29,7 +30,9 @@ form.addEventListener('submit', function () {
     form.reset();
 
 
-})
+});
+// this function to create the head of the table
+
 function generateTableHeader() {
     table.innerHTML = `<tr>
     <th>Task</th>
@@ -38,7 +41,7 @@ function generateTableHeader() {
     <th>Done</th>
     </tr>`
 }
-
+// this function to create the body of the table
 function generatTableBody() {
     table.innerHTML = '';
     generateTableHeader();
@@ -65,7 +68,7 @@ function generatTableBody() {
 
 }
 deleteItem();
-
+// this function to delete specific item
 function deleteItem() {
     table.addEventListener('click', () => {
         if (event.target.tagName == 'I' && event.target.id) {
@@ -76,7 +79,7 @@ function deleteItem() {
         }
     });
 }
-
+// this event to clear the local storage
 clear.addEventListener('click', () => {
     event.preventDefault();
     if (event.target.tagName == 'BUTTON' && event.target.id) {
